@@ -7,8 +7,6 @@ int main() {
 
     std::cin >> weight >> height;
 
-
-
     if (std::cin.good() || height <= 0 || weight <= 0) {
         classicBMI = weight / (pow(height, 2));
         oxfordBMI = (1.3 * weight) / pow(height, 2.5);
