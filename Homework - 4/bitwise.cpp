@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <bitset>
 #include <cstdio>
+#include <limits>
 
 bool validNumber(int num) {
     return 0 <= num && 63 >= num;
@@ -69,15 +70,27 @@ int main(void) {
     while (1) {
         int studentNumber;
         std::cin >> option;
-        
+    
         switch (option) {
         case 1:
             std::cin >> studentNumber;
+            if (std::cin.fail()) {
+                std::cerr << "You need to enter a number" << std::endl;
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+                continue;
+            }
             setBit(attendance,studentNumber);
             std::cout << std::bitset<8 * sizeof(attendance)>(attendance) << std::endl ;
             break;
         case 2:
             std::cin >> studentNumber;
+            if (std::cin.fail()) {
+                std::cerr << "You need to enter a number" << std::endl;
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+                continue;
+            }
             clearBit(attendance,studentNumber);
             std::cout << std::bitset<8 * sizeof(attendance)>(attendance) << std::endl; 
             break;
@@ -88,7 +101,13 @@ int main(void) {
             searchMissingStudents(attendance);
             break;
         case 5:
-             std::cin >> studentNumber;
+            std::cin >> studentNumber;
+            if (std::cin.fail()) {
+                std::cerr << "You need to enter a number" << std::endl;
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+                continue;
+            }
             flipBit(attendance,studentNumber);
             std::cout << std::bitset<8 * sizeof(attendance)>(attendance) << std::endl; 
             break;
@@ -97,7 +116,6 @@ int main(void) {
             return 0;
         default:
             std::cerr << "The options for numbers are 1-6, do it again." << std::endl;
-            continue;
         }
     }
     return 0;
