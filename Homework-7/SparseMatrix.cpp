@@ -63,9 +63,8 @@ SparseMatrix makeSparse(const int* mat, const int numRows, const int numCols) {
 int get(const SparseMatrix& sm, const int row, const int col) {
     if (row < sm.sizeOffsets && sm.offsets[row] + col < sm.sizeData) {
         return sm.data[sm.offsets[row] + col];
-    }
-    else {
-        return 0;
+    } else {
+        return -1;
     }
 }
 
